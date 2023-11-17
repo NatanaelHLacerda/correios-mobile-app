@@ -10,17 +10,26 @@ class ShowAddresesView extends StatefulWidget {
 }
 
 class _ShowAddresesViewState extends State<ShowAddresesView> {
+  late List<AddressModel>? arguments;
+
+  @override
+  void dispose() {
+    arguments?.clear();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final arguments =
+
+    arguments =
         ModalRoute.of(context)?.settings.arguments as List<AddressModel>;
 
     return Scaffold(
       appBar: AppBar(),
       body: ListView.builder(
-          itemCount: arguments.length,
+          itemCount: arguments!.length,
           itemBuilder: (context, index) {
-            final AddressModel address = arguments[index];
+            final AddressModel address = arguments![index];
             return Column(
               children: [
                 CustomAddressWidget(

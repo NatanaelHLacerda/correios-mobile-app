@@ -31,7 +31,9 @@ class SearchCepBloc extends Bloc {
     final result = await getCepViaCepUsecase.getCepViaCep(cep);
     result.fold((l){
     }, (r) {
-      cepList.add(r);
+      if (!cepList.contains(r)){
+        cepList.add(r);
+      } 
       navigateThenUntil(context, '/showAddresesView', cepList);
     });
   }
